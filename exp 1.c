@@ -1,176 +1,107 @@
-#include<stdio.h>
-void main()
+
+#include <stdio.h>
+void printarr(int Arr[],int t);
+int main() {
+
+    int n,x,y,z,pos,m,o,i ;
+    int arr[100];
+
+    do{
+    printf("\n");
+    printf("1: search based on position\n");
+    printf("2: search based on key values\n");
+    printf("3: Insertion\n");
+    printf("4: Deletion\n");
+    printf("5.display\n");
+    printf("6.exit\n");
+    printf("7.create\n");
+    printf("\nEnter your choice:");
+    scanf("%d",&y);
+
+    if(y==1)
+    {
+        if(n!=0){printf("search based on position\n");
+        printf("Enter the elemental position :");
+        scanf("%d",&m);
+        printf("arr[%d]= %d",m ,arr[m-1]);}
+        else{printf("the array is empty\n");}
+    }
+    if(y==2)
+    {
+        if(n!=0){printf("search based on key values\n");
+        printf("Enter the key value:");
+        scanf("%d",&o);
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]==o)
+            {
+                printf("%d is in %d position in the array\n ",(o),(i+1));
+                break;
+            }
+        }
+    }else{printf("the array is empty");} }
+    if(y==3)
+    {
+        if(n!=0){printf("Insertion\n");
+        printf("where to insert element[position]:");
+        scanf("%d",&x);
+        pos=x-1;
+        printf("which element to insert:");
+        scanf("%d",&z);
+        n++;
+        for(int w =n;w>=pos;w--)
+        {
+            arr[w]=arr[w-1];
+        }
+        arr[pos]=z;
+        printarr(arr,n);}
+        else{printf("the array is empty\n");}
+    }
+    if(y==4)
+    {
+        printf("Deletion\n");
+        printf("Where to delete the element:");
+        scanf("%d",&x);
+if(n!=0) {
+        pos=x-1;
+        n--;
+        for(int w=pos ;w<=n ; w++)
+        {
+            arr[w]=arr[w+1];
+        }
+        printarr(arr,n);}
+       else{printf("the element is not found\n");}
+    }
+    if(y==5)
+   {
+
+        if(n!=0){
+            for(int i=0;i<n;i++)
+      {printf("arr[%d] =%d\n",i+1, arr[i]);} }
+      else{printf("the array is empty");}
+
+    }
+    if(y==6)
+    {
+        break;
+    }
+    if(y==7)
+    {
+        printf("Enter size of array:");
+    scanf("%d",&n);
+    printf("Enter array elements\n");
+    for(int i=0;i<n;i++)
+    {
+        printf("arr[%d] = ",i+1);
+        scanf("%d",&arr[i]);
+    }
+    }
+    }while(y!=6);
+}
+void printarr(int Arr[],int t)
 {
-    int ar[100];
-    int i,n,choice,ch,pos,val,flag=0;
-    //Getting the array
-
-    //Printing the array (Traversal)
-    printf("Array element are :");
-    for(i=0;i<n;i++)
+    for(int j=0;j<t;j++)
     {
-        printf("%d\n",ar[i]);
+        printf("arr[%d] =%d\n",j+1, Arr[j]);
     }
-    //Menu
-    do
-    {
-        M:
-    printf("1. Inserting new element\n2. Deleting a existing element\n3.Searching a element\n4.exit5. create arrray 6. display\n Enter your choice : ");
-    scanf("%d",&choice);
-    switch(choice)
-    {
-    // Insertion
-    case 1:
-    Z:
-        if(n==100)
-        {
-            printf("\nArray is full\n");
-             goto M;
-        }
-
-    printf("\n1.Insert in beginning\n2.Insert in end\n3.Insert in middle \n Enter your choice : ");
-    scanf("%d",&ch);
-    if(ch==1)
-    {
-    printf("Enter value of element to be inserted: ");
-    scanf("%d",&val);
-    for(i=n;i>0;i--)
-    ar[i]=ar[i-1];
-    ar[0]=val;
-    n++;
-    }
-    else if(ch==2)
-    {
-    printf("Enter value of element to be inserted: ");
-    scanf("%d",&val);
-    ar[n]=val;
-    n++;
-    }
-    else if(ch==3)
-    {
-    printf("Enter the position and value of element to be inserted: ");
-    scanf("%d %d",&pos,&val);
-    for(i=n;i>=pos;i--)
-    ar[i]=ar[i-1];
-    ar[pos-1]=val;
-    n++;
-    }
-    else
-    {
-    printf("Invalid input.Try again");
-    goto Z;
-    }
-    printf("Array element are :");
-    for(i=0;i<n;i++)
-    {
-    printf("%d\n",ar[i]);
-    }
-    break;
-    //Deletion
-    case 2:
-    Y:
-        if(n==0)
-        {
-            printf("\nArray is empty\n");
-            goto M;
-        }
-    printf("1.Delete in beginning\n2.Delete in end\n3.Delete in middle \n Enter your choice : ");
-    scanf("%d",&ch);
-    if(ch==1)
-    {
-    for(i=0;i<n-1;i++)
-    ar[i]=ar[i+1];
-    ar[n-1]=NULL;
-    n--;
-    }
-    else if(ch==2)
-    {
-    ar[n-1]=NULL;
-    n--;
-    }
-    else if(ch==3)
-    {
-    printf("Enter the position to be deleted: ");
-    scanf("%d",&pos);
-    for(i=pos-1;i<n;i++)
-    ar[i]=ar[i+1];
-    ar[n-1]=NULL;
-    n--;
-    }
-    else
-    {
-    printf("Invalid input.Try again");
-    goto Y;
-    }
-    if(n!=0)
-    {
-    printf("\nArray element are :");
-    for(i=0;i<n;i++)
-    {
-    printf("%d\n",ar[i]);
-    }
-    }
-    else
-        printf("\nArray is empty\n");
-    break;
-//Searching
-    case 3:
-    X:
-    printf("\n1.Search by value\n2.Search by position \n Enter your choice : ");
-    scanf("%d",&ch);
-    if(ch==1)
-    {
-    printf("Enter value: ");
-    scanf("%d",&val);
-    flag=0;
-    for(i=0;i<n;i++)
-    {
-    if(ar[i]==val)
-    {
-    printf("position of the element is: %d \n",i+1);
-    flag=1;
-    }
-    }
-    if(flag==0)
-    printf("Element not found");
-    }
-    else if(ch==2)
-    {
-    printf("Enter position: ");
-    scanf("%d",&pos);
-    printf("Element in the given position is: %d \n",ar[pos-1]);
-    }
-    else
-    {
-    printf("Invalid input.Try again");
-    goto X;
-    }
-    case 4:
-    break;
-        case 5:
-           printf("\nEnter how many elements? ");
-        scanf("%d",&n);
-        printf("Enter the array elements: ");
-        for(i=0;i<n;i++)
-        {
-        scanf("%d",&ar[i]);
-        }
-        case 6:
-            if(n!=0)
-    {
-    printf("\nArray element are :");
-    for(i=0;i<n;i++)
-    {
-    printf("%d\n",ar[i]);
-    }
-    }
-    else
-        printf("\nArray is empty\n");
-    break;
-    default:
-    printf("Wrong input try again ");
-    break;
-    }
-
-    } while(choice!=4);
 }
